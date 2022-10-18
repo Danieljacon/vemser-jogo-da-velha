@@ -1,19 +1,22 @@
-var vez = 1;
-var vencedor = "";
+let vez = 1;
+let vencedor = "";
+let nomeJogador1 = prompt("Digite o nome do jogador 1");
+let nomeJogador2 = prompt("Digite o nome do jogador 2");
 
 function casasIguais(a, b, c) {
-  var bgA = $("#casa" + a).css("background-image");
-  var bgB = $("#casa" + b).css("background-image");
-  var bgC = $("#casa" + c).css("background-image");
-  if (bgA == bgB && bgB == bgC && bgA != "none" && bgA != "") {
-    if (bgA.indexOf("1.jpg") >= 0) vencedor = "1";
-    else vencedor = "2";
-    return true;
-  } else {
-    return false;
-  }
-}
+  const bgA = document.getElementById("casa" + a).style.backgroundImage;
+  const bgB = document.getElementById("casa" + b).style.backgroundImage;
+  const bgC = document.getElementById("casa" + c).style.backgroundImage;
 
+  if (bgA == bgB && bgB == bgC && bgA != "none" && bgA != "") {
+    if (bgA.indexOf("1.jpg") >= 0) {
+      vencedor = nomeJogador1;
+    } else {
+      vencedor = nomeJogador2;
+    }
+    return true;
+  } else return false;
+}
 
 function verificarFimDeJogo() {
   if (
@@ -27,7 +30,7 @@ function verificarFimDeJogo() {
     casasIguais(3, 5, 7)
   ) {
     const resultado = document.getElementById("resultado");
-    resultado.innerHTML = "<h1>O jogador " + vencedor + "venceu! </h1>";
+    resultado.innerHTML = "<h1>O jogador " + vencedor + " venceu! </h1>";
     const casaRemoveClick = document.querySelectorAll(".casa");
     casaRemoveClick.forEach((e) => {
       e.addEventListener("click", (e) => {
