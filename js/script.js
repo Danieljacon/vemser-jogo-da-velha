@@ -30,7 +30,7 @@ function verificarFimDeJogo() {
     casasIguais(3, 5, 7)
   ) {
     const resultado = document.getElementById("resultado");
-    resultado.innerHTML = "<h1>O jogador " + vencedor + " venceu! </h1>";
+    resultado.innerHTML = `<h1>O jogador ${vencedor} venceu! </h1>`;
     const casaRemoveClick = document.querySelectorAll(".casa");
     casaRemoveClick.forEach((e) => {
       e.addEventListener("click", (e) => {
