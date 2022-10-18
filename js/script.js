@@ -2,18 +2,19 @@ let vez = 1;
 let vencedor = "";
 let nomeJogador1 = prompt("Digite o nome do jogador 1");
 let nomeJogador2 = prompt("Digite o nome do jogador 2");
+const casa = document.querySelectorAll(".casa");
 
 function casasIguais(a, b, c) {
-  const bgA = document.getElementById("casa" + a).style.backgroundImage;
-  const bgB = document.getElementById("casa" + b).style.backgroundImage;
-  const bgC = document.getElementById("casa" + c).style.backgroundImage;
+  function getBackgroundImage(casa) {
+    return document.getElementById("casa" + casa).style.backgroundImage;
+  }
+
+  const bgA = getBackgroundImage(a);
+  const bgB = getBackgroundImage(b);
+  const bgC = getBackgroundImage(c);
 
   if (bgA == bgB && bgB == bgC && bgA != "none" && bgA != "") {
-    if (bgA.indexOf("1.jpg") >= 0) {
-      vencedor = nomeJogador1;
-    } else {
-      vencedor = nomeJogador2;
-    }
+    bgA.indexOf("1.jpg") >= 0 ?  vencedor = nomeJogador1 : vencedor = nomeJogador2;
     return true;
   } else return false;
 }
@@ -32,6 +33,7 @@ function verificarFimDeJogo() {
     const resultado = document.getElementById("resultado");
     resultado.innerHTML = `<h1>O jogador ${vencedor} venceu! </h1>`;
     const casaRemoveClick = document.querySelectorAll(".casa");
+
     casaRemoveClick.forEach((e) => {
       e.addEventListener("click", (e) => {
         e.preventDefault();
@@ -40,7 +42,6 @@ function verificarFimDeJogo() {
   }
 }
 
-const casa = document.querySelectorAll(".casa");
 casa.forEach((e) => {
   e.addEventListener("click", (e) => {
     const bg = e.target.style.backgroundImage;
